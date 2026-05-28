@@ -1,12 +1,14 @@
 package com.sprintlog.sprintlogboot.domain;
 
 import com.sprintlog.sprintlogboot.exception.InvalidActivityException;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
 public abstract class LearningActivity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,8 +60,6 @@ public abstract class LearningActivity implements Serializable {
         return tags.contains(tag.trim().toLowerCase());
     }
 
-
-
     public static int getTotalCreatedCount() {
         return totalCreateCount;
     }
@@ -98,39 +98,4 @@ public abstract class LearningActivity implements Serializable {
         this.visibility = Visibility.PRIVATE;
     }
 
-
-    public abstract String getActivityType(); // 강의, 실습, 독서
-    public abstract String getDetailText(); // 유형별 세부 정보
-
-    public static int getTotalCreateCount() {
-        return totalCreateCount;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getMinutes() {
-        return minutes;
-    }
-
-    public Visibility getVisibility() {
-        return visibility;
-    }
-
-    public String getVisibilityText() {
-        return this.visibility.getLabel();
-    }
-
-    public boolean isPublicActivity() {
-        return this.visibility == Visibility.PUBLIC;
-    }
-
-    public ActivityCategory getCategory() {
-        return category;
-    }
 }

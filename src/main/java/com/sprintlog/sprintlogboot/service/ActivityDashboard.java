@@ -2,28 +2,17 @@ package com.sprintlog.sprintlogboot.service;
 
 import com.sprintlog.sprintlogboot.domain.ActivityCategory;
 import com.sprintlog.sprintlogboot.domain.LearningActivity;
-import com.sprintlog.sprintlogboot.printer.ActivityPrinter;
 import com.sprintlog.sprintlogboot.repository.ActivityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service // 빈 등록 어노테이션, @Component랑 기능은 같고, 계층을 좀 더 명시적으로 표기
+@RequiredArgsConstructor // final로 선언된 필드만 받는 생성자를 자동으로 만들어 줌.
 public class ActivityDashboard {
 
     private final ActivityRepository repository;
-
-    // 의존성 자동 주입 ActivityDashBoard가 ActivityRepository 에게 의존하고 있는 상황.
-    // 생성자를 통해서 ActivityRepository 를 전달 받을 때 컨테이너에서 검색해서 주입해 주겠다.
-    @Autowired
-    public ActivityDashboard(ActivityRepository repository) {
-        if (repository == null) {
-            throw new IllegalArgumentException("학습 활동 목록은 null일 수 없습니다.");
-        }
-        this.repository = repository;
-    }
 
     /**
      * 카테고리별 활동 수를 세어 Summary를 만들자.
@@ -89,35 +78,6 @@ public class ActivityDashboard {
 
         public int getReadingCount() {
             return readingCount;
-        }
-    }
-
-    /**
-     * 보고서 출력기
-     * 외부 클래스(ActivityDashboard)가 가지고 있는 activities 배열에 접근해야 하기 때문에
-     * static을 붙이지 않은 멤버 내부 클래스로 선언.
-     */
-    public class ReportBuilder {
-
-        private final ActivityPrinter printer;
-
-        public ReportBuilder(@Qualifier("console") ActivityPrinter printer) {
-            if (printer == null) {
-                throw new IllegalArgumentException("출력 도구는 null일 수 없습니다.");
-            }
-            this.printer = printer;
-        }
-
-        public void print() {
-            Summary summary = summarize();  // 외부 클래스의 summarize() 호출
-            System.out.println("── 활동 수: 총 " + summary.getTotalCount()
-                    + "개 (강의 " + summary.getLectureCount()
-                    + " / 실습 " + summary.getPracticeCount()
-                    + " / 독서 " + summary.getReadingCount() + ")");
-
-            for (LearningActivity activity : repository.findAll()) {  // 외부 클래스의 activities 접근
-                printer.print(activity);
-            }
         }
     }
 
