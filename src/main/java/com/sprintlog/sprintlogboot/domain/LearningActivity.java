@@ -11,6 +11,7 @@ import java.util.Set;
 @Getter
 public abstract class LearningActivity implements Serializable {
 
+    // 이 파일의 클래스 구조가 현재 클래스와 같은지에 대한 버전 키 검사용 필드
     private static final long serialVersionUID = 1L;
 
     private static int totalCreateCount = 0;
@@ -59,6 +60,7 @@ public abstract class LearningActivity implements Serializable {
         if (tag == null) return false;
         return tags.contains(tag.trim().toLowerCase());
     }
+
 
     public static int getTotalCreatedCount() {
         return totalCreateCount;

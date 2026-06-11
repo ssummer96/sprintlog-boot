@@ -1,18 +1,23 @@
 package com.sprintlog.sprintlogboot.service;
 
+
 import com.sprintlog.sprintlogboot.domain.ActivityCategory;
 import com.sprintlog.sprintlogboot.domain.LearningActivity;
 import com.sprintlog.sprintlogboot.repository.ActivityRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Service // 빈 등록 어노테이션, @Component랑 기능은 같고, 계층을 좀 더 명시적으로 표기
+@Service // 빈 등록 어노테이션. @Component랑 기능은 똑같고, 계층을 좀 더 명시적으로 표기
 @RequiredArgsConstructor // final로 선언된 필드만 받는 생성자를 자동으로 만들어 줌.
 public class ActivityDashboard {
 
     private final ActivityRepository repository;
+
 
     /**
      * 카테고리별 활동 수를 세어 Summary를 만들자.
@@ -84,7 +89,7 @@ public class ActivityDashboard {
     // 카테고리별 그룹화 -------------------------------------------------
     // 카테고리별로 활동(Log)을 그룹화해서 Map으로 반환한다.
     public Map<ActivityCategory, List<LearningActivity>> groupByCategory() {
-        Map<ActivityCategory, List<LearningActivity>> result = new TreeMap<>();
+        Map<ActivityCategory, List<LearningActivity>> result = new TreeMap<>(); // HashMap -> TreeMap으로 변경: 카테고리(enum) 선언 순서대로 정렬되어 출력이 일관된다.
         for (LearningActivity activity : repository.findAll()) {
             ActivityCategory cat = activity.getCategory();
 
@@ -123,11 +128,3 @@ public class ActivityDashboard {
     }
 
 }
-
-
-
-
-
-
-
-

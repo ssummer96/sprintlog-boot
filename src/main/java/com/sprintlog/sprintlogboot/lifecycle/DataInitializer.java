@@ -26,7 +26,8 @@ public class DataInitializer {
     @PostConstruct
     public void loadSampleData() {
 
-        log.info("[lifecycle] @PostConstruct — {}",properties.getWelcomeMessage());
+        log.info("[lifecycle] @PostConstruct — {}", properties.getWelcomeMessage());
+        System.out.println("메롱메롱");
 
         if (!properties.getSampleData().isEnabled()) {
             log.info("[lifecycle] sample-data.enabled = false - 적재 건너뜀!");
@@ -40,13 +41,14 @@ public class DataInitializer {
         repository.add(new ReadingLog("스프링 인 액션", 75, Visibility.PUBLIC, "스프링 인 액션 5판"));
         repository.add(new LectureLog("Prototype vs Singleton", 45, Visibility.PRIVATE, "이강사"));
 
-        log.info("[lifecycle] 샘플 데이터 적재 완료 — 총 {}개",repository.count());
+        log.info("[lifecycle] 샘플 데이터 적재 완료 — 총 {}개", repository.count());
     }
 
     @PreDestroy
     public void shutdown() {
         log.info("[lifecycle] @PreDestroy — DataInitializer 가 종료 정리를 합니다.");
-        log.info("[lifecycle] 최종 활동 수: {}개, 총 학습시간: {}분", repository.count(), repository.getTotalMinutes());
+        log.info("[lifecycle] 최종 활동 수: {}개, 총 학습 시간: {}분"
+                , repository.count(), repository.getTotalMinutes());
     }
 
 }

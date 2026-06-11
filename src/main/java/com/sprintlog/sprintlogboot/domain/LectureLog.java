@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class LectureLog extends LearningActivity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     private String instructorName; // 강사 이름 (LectureLog만 가지는 고유한 필드)
 
     public LectureLog(String title, int minutes, Visibility visibility, String instructorName) {
@@ -25,8 +26,3 @@ public class LectureLog extends LearningActivity implements Serializable {
     }
 
 }
-
-
-
-
-

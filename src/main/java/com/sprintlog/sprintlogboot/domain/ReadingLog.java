@@ -1,5 +1,6 @@
 package com.sprintlog.sprintlogboot.domain;
 
+
 import lombok.Getter;
 
 import java.io.Serializable;

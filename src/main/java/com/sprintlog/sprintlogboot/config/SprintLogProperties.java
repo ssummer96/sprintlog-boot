@@ -13,12 +13,10 @@ import org.springframework.stereotype.Component;
 public class SprintLogProperties {
 
     private String welcomeMessage;
-
     private SampleData sampleData = new SampleData();
 
     // 중첩된 설정 - 내부 클래스를 하나 선언해서 표현
-    @Getter
-    @Setter
+    @Getter @Setter
     public static class SampleData {
         private boolean enabled;
         private int count;

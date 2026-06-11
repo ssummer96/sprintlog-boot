@@ -1,5 +1,7 @@
 package com.sprintlog.sprintlogboot.domain;
 
+
+
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -8,6 +10,7 @@ import java.io.Serializable;
 public class PracticeLog extends LearningActivity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     private static final int MINIMUM_COMPLETION_RATE = 70;
 
     private int completionRate; // PracticeLog만 가지는 고유한 필드
@@ -16,6 +19,7 @@ public class PracticeLog extends LearningActivity implements Serializable {
         super(title, minutes, visibility, ActivityCategory.PRACTICE);
         this.completionRate = normalizeCompletionRate(completionRate);
     }
+
 
     private int normalizeCompletionRate(int completionRate) {
         if (completionRate < 0) {
@@ -28,13 +32,4 @@ public class PracticeLog extends LearningActivity implements Serializable {
 
         return completionRate;
     }
-
 }
-
-
-
-
-
-
-
-
