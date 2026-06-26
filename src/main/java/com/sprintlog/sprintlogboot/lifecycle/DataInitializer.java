@@ -43,14 +43,17 @@ public class DataInitializer {
 
         log.info("[lifecycle] 샘플 데이터 적재 완료 — 총 {}개", repository.count());
 
-        if(userRepository.count() == 0) {
-            User choon = new User("김춘식","choon@naver.com");
+        if (userRepository.count() == 0) {
+            User choon = new User("김춘식", "choon@naver.com");
             userRepository.save(choon);
-            User saved = userRepository.save(new User("홍길동","hong@gmail.com"));
-            log.info("[lifeCycle] User 저장 완료 - saved id = {}, createdAt = {}", saved.getId(), saved.getCreatedAt());
+            User saved = userRepository.save(new User("홍길동", "hong@gmail.com"));
+            log.info("[lifecycle] User 저장 완료 - saved id={}, createdAt={}"
+                    , saved.getId(), saved.getCreatedAt());
         }
 
-        log.info("[lifeCycle] DB 사옹자 수 : {}명", userRepository.count());
+        log.info("[lifecycle] DB 사용자 수: {}명", userRepository.count());
+
+
     }
 
     @PreDestroy
