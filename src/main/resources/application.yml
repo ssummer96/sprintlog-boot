@@ -33,4 +33,4 @@ sprintlog:
   sample-data:
     enabled: true
     count: 4
-  file-directory: /Users/stephen/Desktop/codeit-13th-develop/spring-upload
+  file-directory: /Users/ssummer/Desktop/codeit-13th-develop/spring-upload
