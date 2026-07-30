@@ -1,11 +1,22 @@
-# 개발 환경 (dev profile) 추가 설정
+# 운영 환경 (dev profile) 추가 설정 : 컨테이너/클라우드 배포용 외부 설정
 # application.yml의 값들을 덮어쓰거나 보강
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://db:5432/sprintlog}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:secret}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:validate} # 운영환경에서는 validate 추천.
 
 sprintlog:
   welcome-message: "SprintLog Boot - PRODUCTION (운영 환경)"
   sample-data:
     enabled: false
     count: 4
+  file-directory: ${SPRINTLOG_FILE_DIR:/app/uploads} #컨테이너 안 경로 (호스트 절대경로 대신)
 
 # 개발 시에는 자세한 로그가 도움됨.
 logging:
