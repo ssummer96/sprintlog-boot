@@ -27,9 +27,9 @@ services: # 실행할 여러 컨테이너들을 정의
       - "8080:8080"
       - "9090:9090"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/sprintlog # db = 서비스 이름
-      - SPRING_DATASOURCE_PASSWORD=secret
-      - JPA_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - JPA_DDL_AUTO=${JPA_DDL_AUTO}
       # JVM 메모리 설정
       - JAVA_OPTS=-Xmx400m -Xms200m
     depends_on: # 서비스 시작 순서 제어

@@ -7,6 +7,12 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
     password: ${SPRING_DATASOURCE_PASSWORD:secret}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 10000
+      max-lifetime: 1740000
+      keepalive-time: 300000
+
   jpa:
     hibernate:
       ddl-auto: ${JPA_DDL_AUTO:validate} # 운영환경에서는 validate 추천.
