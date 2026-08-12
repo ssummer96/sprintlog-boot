@@ -1,15 +1,16 @@
 package com.sprintlog.sprintlogboot.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-@Controller
+@RestController
 public class WhoAmIController {
+
     @GetMapping("/whoami")
-    public Map<String,String> whoami() {
-        String host = System.getenv("HOSTNAME");
-        return Map.of("host", host != null ? host : "unknown");
+    public Map<String, String> whoami() {
+        return Map.of("host", System.getenv().getOrDefault("HOSTNAME", "unknown"));
     }
+
 }

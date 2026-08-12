@@ -1,15 +1,18 @@
-name: ci.yml
+
+name: ci
+
+# - 트리거: 언제 이 워크플로가 도는가?
 on:
   push:
-    branches: ["main"] # main에 push되면
+    branches: [ "main" ] # main에 push되면
   pull_request:
-    branches: ["main"]
-  workflow_dispatch: # 수동 실행 버튼 (Actions 탭에서 직접)
+    branches: [ "main" ] # main에 PR이 열리면
+  workflow_dispatch:  # 수동 실행 버튼 (Actions 탭에서 직접)
 
 jobs:
   # 1. 빌드 + 테스트 (CI의 핵심)
   build:
-    runs-on: ubuntu-latest # github가 빌려주는 리눅스 운영체제 러너
+    runs-on: ubuntu-latest # Github가 빌려주는 리눅스 운영체제 러너
     steps:
       - name: 코드 체크아웃
         uses: actions/checkout@v7 # 내 github repository에서 코드를 가져오겠다.
@@ -22,8 +25,9 @@ jobs:
 
       - name: 빌드 + 테스트
         run: |
-          chmod +x gradlew
+          chmod +x gradlew 
           ./gradlew build
+  
 
   # 2. AWS 연동 테스트
   aws-connection-test:

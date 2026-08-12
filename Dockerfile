@@ -13,6 +13,7 @@ RUN chmod +x gradlew && ./gradlew dependencies --no-daemon
 
 # 소스코드 복사 후 실행 가능한 jar 빌드
 # 개발 과정에서 테스틑 이미지 빌드에서 제외
+# 로컬 개발 환경: gradlew clean build, Dockerfile: clean 할 필요 없음. bootJar를 통해 실행 가능한 jar 하나만 생성.
 COPY src ./src
 RUN ./gradlew bootJar -x test
 
